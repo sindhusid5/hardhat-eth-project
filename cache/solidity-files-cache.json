@@ -1,0 +1,184 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/sindhu/Desktop/final-project-hardhat-project/contracts/OrderBook.sol": {
+      "lastModificationDate": 1721717551856,
+      "contentHash": "b55cebc0864391279bba40b66c319416",
+      "sourceName": "contracts/OrderBook.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SignatureVerifier.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OrderBook"
+      ]
+    },
+    "/Users/sindhu/Desktop/final-project-hardhat-project/contracts/OrderManagement.sol": {
+      "lastModificationDate": 1721712200442,
+      "contentHash": "a11facb646e215703e1c82fea8fab381",
+      "sourceName": "contracts/OrderManagement.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OrderManagement"
+      ]
+    },
+    "/Users/sindhu/Desktop/final-project-hardhat-project/contracts/SignatureVerifier.sol": {
+      "lastModificationDate": 1721714544722,
+      "contentHash": "53bb34203692cf62e83eff565ebf8c6e",
+      "sourceName": "contracts/SignatureVerifier.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SignatureVerifier"
+      ]
+    },
+    "/Users/sindhu/Desktop/final-project-hardhat-project/contracts/OrderStorage.sol": {
+      "lastModificationDate": 1721710607405,
+      "contentHash": "70a92f4c6f088b6ce552127d56ca6c6a",
+      "sourceName": "contracts/OrderStorage.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OrderStorage"
+      ]
+    },
+    "/Users/sindhu/Desktop/final-project-hardhat-project/contracts/EnhancedOrderBook.sol": {
+      "lastModificationDate": 1721717209996,
+      "contentHash": "d8f005034c685af3801b86e464a78954",
+      "sourceName": "contracts/EnhancedOrderBook.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./OrderBook.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "EnhancedOrderBook"
+      ]
+    }
+  }
+}
