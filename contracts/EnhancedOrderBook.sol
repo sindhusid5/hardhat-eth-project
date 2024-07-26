@@ -24,6 +24,16 @@ contract EnhancedOrderBook is OrderBook {
 
     mapping(uint256 => EnhancedOrder) public enhancedOrders;
 
+    /**
+     * @notice Places a new order with an expiration time.
+     * @param _id The ID of the order.
+     * @param _buyer The address of the buyer.
+     * @param _amount The amount of the order.
+     * @param _price The price of the order.
+     * @param _ipfsHash The IPFS hash of the order details.
+     * @param _signature The signature to verify.
+     * @param _expiry The expiration time of the order.
+     */
     function placeOrderWithExpiry(
         uint256 _id,
         address _buyer,
@@ -65,12 +75,22 @@ contract EnhancedOrderBook is OrderBook {
         emit OrderVerified(_id, true);
     }
 
+    /**
+     * @notice Checks if an order has expired.
+     * @param _id The ID of the order.
+     * @return True if the order has expired, otherwise false.
+     */
     function isOrderExpired(uint256 _id) public view returns (bool) {
         EnhancedOrder storage order = enhancedOrders[_id];
         require(order.exists, "Order does not exist");
         return block.timestamp > order.expiry;
     }
 
+    /**
+     * @notice Checks if an order is active.
+     * @param _id The ID of the order.
+     * @return True if the order is active, otherwise false.
+     */
     function isOrderActive(uint256 _id) public view returns (bool) {
         EnhancedOrder storage order = enhancedOrders[_id];
         return order.exists && !order.canceled && !isOrderExpired(_id);

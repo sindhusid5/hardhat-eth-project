@@ -1,4 +1,4 @@
-# OrderBook Contract
+ # OrderBook Contract
 
 ## Overview
 
@@ -8,7 +8,7 @@ The **OrderBook** project is a smart contract system for managing and validating
 
 1. **OrderBook Contract**:
    - Stores order details on-chain.
-   - Validates signatures using ecrecover() to ensure orders are genuine.
+   - Validates signatures using `ecrecover()` to ensure orders are genuine.
    - Emits events for order placement and verification.
 
 2. **EnhancedOrderBook Contract** (Extension):
@@ -18,6 +18,48 @@ The **OrderBook** project is a smart contract system for managing and validating
 3. **Off-Chain Components**:
    - **Signature Generation**: Off-chain process where orders are signed by users using their private keys.
    - **IPFS**: Used to store and reference off-chain data related to orders.
+
+## High-Level Design
+
+The **OrderBook** system consists of two main contracts: `OrderBook` and `EnhancedOrderBook`. The `OrderBook` contract provides basic functionalities for placing orders and validating signatures. The `EnhancedOrderBook` contract extends the base functionalities by adding order expiration and additional control features. Off-chain components handle signature generation and storage of data on IPFS.
+
+## Implementation Details
+
+### OrderBook Contract
+- **Functions**:
+  - `placeOrder`: Places a new order with details including ID, buyer address, amount, price, and IPFS hash.
+  - `getMessageHash`: Generates the hash of the order details.
+  - `recoverSigner`: Recovers the signer's address from the signed message.
+  - `getEthSignedMessageHash`: Computes the Ethereum signed message hash.
+  - `splitSignature`: Splits the signature into its `r`, `s`, and `v` components.
+  
+### EnhancedOrderBook Contract
+- **Functions**:
+  - `placeOrderWithExpiry`: Places a new order with an expiration time.
+  - `isOrderExpired`: Checks if an order has expired.
+  - `isOrderActive`: Checks if an order is active.
+
+### Off-Chain Components
+- **Signature Generation**: Users sign orders off-chain using their private keys, ensuring the authenticity of the orders without exposing private keys on-chain.
+- **IPFS**: Stores order details off-chain, reducing on-chain storage costs and enabling large data handling.
+
+**Important:** Ensure the IPFS API URL in your environment configuration is correct to interact with the IPFS network.
+
+## Gas Cost Optimizations
+
+- **Use of `abi.encodePacked`**: Efficient encoding of order details to minimize gas usage.
+- **Off-Chain Data Storage**: Storing data on IPFS to reduce on-chain storage costs.
+- **Signature Validation**: Using `ecrecover` for efficient and secure signature validation.
+
+## Security Considerations
+
+- **Signature Validation**: Ensures orders are signed by the legitimate owners using `ecrecover`.
+- **Data Integrity**: Uses IPFS to store data, ensuring it remains tamper-proof and verifiable.
+- **Order Expiry**: Adds expiry functionality to ensure orders cannot be exploited indefinitely.
+
+## Conclusion
+
+This project showcases a comprehensive order management system on Ethereum, leveraging off-chain components for efficiency and security. The provided tests ensure the system is robust and reliable, meeting the project's requirements.
 
 ## Prerequisites
 
@@ -31,7 +73,7 @@ The **OrderBook** project is a smart contract system for managing and validating
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
+   git clone <repository_url>
    cd final-project
    ```
 
@@ -50,9 +92,11 @@ The **OrderBook** project is a smart contract system for managing and validating
      MNEMONIC=<your_MNEMONIC>
      PRIVATE_KEY=<your_PRIVATE_KEY>
      CONTRACT_ADDRESS=<your_CONTRACT_ADDRESS>
+     IPFS_HASH=<your_IPFS_HASH>
+     ORDER_BOOK_ADDRESS=<your_ORDER_BOOK_ADDRESS>
      ```
 
-## Contract Deployment
+## Contract Deployment - Sepolia
 
 1. **Compile the Solidity code**:
    ```bash
@@ -74,14 +118,14 @@ The **OrderBook** project is a smart contract system for managing and validating
    npx hardhat run scripts/signOrder.js --network sepolia
    ```
 
-## Local Network Testing
+## Testing - Local Network
 
-1. **Start Hardhat Local Node**:
+1. **1st Terminal - Start Hardhat Local Node**:
    ```bash
    npx hardhat node
    ```
 
-2. **Run Tests on Local Network**:
+2. **2nd Terminal - Run Tests on Local Network**:
    Open a new terminal and run:
    ```bash
    npx hardhat test --network localhost
@@ -96,7 +140,7 @@ The **OrderBook** project is a smart contract system for managing and validating
 
 ## Testing Summary
 
-- To test the contracts locally:
+- To test the contracts locally (local network):
   - Start the local Hardhat node.
   - Open a new terminal and run the tests.
 
@@ -104,4 +148,30 @@ The **OrderBook** project is a smart contract system for managing and validating
   - Ensure your `.env` file is correctly configured with Sepolia network details.
   - Deploy the contract and run interaction scripts on the Sepolia network.
 
-This setup ensures that you can effectively test both locally and on the Sepolia test network, with clear instructions for running and verifying each component of your project.
+## IPFS Off-Chain Integration
+
+### Adding Orders to IPFS
+
+You can use the provided Express.js server to interact with IPFS. This server allows you to store order data off-chain and obtain an IPFS hash, which is then used in your smart contracts.
+
+- **API Endpoint**: `POST /addOrder`
+  - **Purpose**: Store order data on IPFS.
+  - **Input**: JSON object with order details.
+  - **Output**: IPFS hash of the stored order.
+
+### Example Usage
+
+1. **Start the Express Server**:
+   ```bash
+   node index.js
+   ```
+
+2. **Add Order Data**:
+   Use Postman or any HTTP client to send a POST request to `http://localhost:3000/addOrder` with your order data.
+
+3. **Use the IPFS Hash**:
+   - Retrieve the IPFS hash from the response.
+   - Use this hash when interacting with the smart contract to place orders.
+
+**Ensure the server is running and correctly configured to interact with IPFS for smooth data handling.**
+ 

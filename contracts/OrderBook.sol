@@ -3,6 +3,11 @@ pragma solidity ^0.8.0;
 
 import "./SignatureVerifier.sol";
 
+/**
+ * @title OrderBook
+ * @author Sindhuja Rajakkani
+ * @dev Contract for managing orders with off-chain signature verification
+ */
 contract OrderBook is SignatureVerifier {
     // Error messages
     string private constant ERROR_DUPLICATE_ORDER_ID = "Order ID already exists";
@@ -24,6 +29,14 @@ contract OrderBook is SignatureVerifier {
     mapping(uint256 => Order) public orders;
 
     // Events
+    /**
+     * @dev Emitted when a new order is placed
+     * @param id The ID of the order
+     * @param buyer The address of the buyer
+     * @param amount The amount of the order
+     * @param price The price of the order
+     * @param ipfsHash The IPFS hash of the order details
+     */
     event OrderPlaced(
         uint256 indexed id,
         address indexed buyer,
@@ -31,9 +44,23 @@ contract OrderBook is SignatureVerifier {
         uint256 price,
         string ipfsHash
     );
+
+    /**
+     * @dev Emitted when an order is verified
+     * @param id The ID of the order
+     * @param verified Boolean indicating if the order is verified
+     */
     event OrderVerified(uint256 indexed id, bool verified);
 
-    // Function to place an order
+    /**
+     * @dev Places a new order with off-chain signature verification
+     * @param _id The ID of the order
+     * @param _buyer The address of the buyer
+     * @param _amount The amount of the order
+     * @param _price The price of the order
+     * @param _ipfsHash The IPFS hash of the order details
+     * @param _signature The signature of the buyer
+     */
     function placeOrder(
         uint256 _id,
         address _buyer,
