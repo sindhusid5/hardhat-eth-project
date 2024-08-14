@@ -11,6 +11,7 @@
 
 # Hardhat specific
 hardhat-deploy
+coverage/
 
 # Local environment files
 .env

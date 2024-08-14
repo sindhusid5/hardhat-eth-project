@@ -1,4 +1,4 @@
-
+ 
 const { expect } = require("chai");
 require("@nomicfoundation/hardhat-chai-matchers");
 const { ethers } = require("hardhat");
@@ -21,7 +21,7 @@ describe("OrderBook", function () {
     orderBook = await OrderBookFactory.deploy();
     await orderBook.deployed();
 
-    console.log(`OrderBook deployed to: ${orderBook.address}`);
+    // console.log(`OrderBook deployed to: ${orderBook.address}`);
   });
 
   function getMessageHash(id, buyer, amount, price, ipfsHash) {
@@ -87,6 +87,4 @@ describe("OrderBook", function () {
     await expect(orderBook.placeOrder(orderId, buyer.address, amount, price, IPFS_HASH, invalidSignature))
       .to.be.revertedWith("Invalid signature");
   });
-
-
 });

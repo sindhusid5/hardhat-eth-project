@@ -73,9 +73,8 @@ This project showcases a comprehensive order management system on Ethereum, leve
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository_url>
-   cd final-project
-   ```
+   cd hardhat-eth-project
+     ```
 
 2. **Install Dependencies**:
    ```bash
@@ -94,6 +93,8 @@ This project showcases a comprehensive order management system on Ethereum, leve
      CONTRACT_ADDRESS=<your_CONTRACT_ADDRESS>
      IPFS_HASH=<your_IPFS_HASH>
      ORDER_BOOK_ADDRESS=<your_ORDER_BOOK_ADDRESS>
+     PORT=<your_PORT>
+     WEB3_STORAGE_API_TOKEN=<your_WEB3_STORAGE_API_TOKEN>
      ```
 
 ## Contract Deployment - Sepolia
@@ -103,32 +104,54 @@ This project showcases a comprehensive order management system on Ethereum, leve
    npx hardhat compile
    ```
 
-2. **Deploy to Sepolia Network**:
-   ```bash
-   npx hardhat run scripts/deploy.js --network sepolia
-   ```
-
-## Interaction Scripts
-
-3. **Run Interaction Scripts**:
-   ```bash
-   npx hardhat run scripts/interact.js --network sepolia
-   npx hardhat run scripts/uploadIPFS.js --network sepolia
-   npx hardhat run scripts/placeOrder.js --network sepolia
-   npx hardhat run scripts/signOrder.js --network sepolia
-   ```
-
-## Testing - Local Network
-
-1. **1st Terminal - Start Hardhat Local Node**:
+2. **1st Terminal - Start Hardhat Local Node(for localnetwork)**:
    ```bash
    npx hardhat node
    ```
 
-2. **2nd Terminal - Run Tests on Local Network**:
+3. **2nd Terminal - Start IPFS Daemon if your using  localnetwork**:
+   ```bash
+   ipfs daemon
+   ```
+
+4. **Deploy to Sepolia or Localnetwork Network**:
+   ```bash
+   npx hardhat run scripts/deploy.js --network sepolia
+   ```
+   or
+
+  ```bash
+   npx hardhat run scripts/deploy.js  
+   
+   ```
+## Interaction Scripts
+
+3. **Run Interaction Scripts using Sepolia Network**:
+   ```bash
+   npx hardhat run scripts/interact.js --network sepolia
+   npx hardhat run scripts/uploadToIPFS.js --network sepolia
+   npx hardhat run scripts/placeOrder.js --network sepolia
+   npx hardhat run scripts/signOrder.js --network sepolia
+   ```
+
+or
+
+   **Run Interaction Scripts using Local Network - 2nd Terminal**:
+   ```bash
+   npx hardhat run scripts/interact.js  
+   npx hardhat run scripts/uploadToIPFS.js 
+   npx hardhat run scripts/placeOrder.js 
+   npx hardhat run scripts/signOrder.js  
+   ```
+
+## Testing - Local Network
+
+
+
+2. **Run Tests - 2nd Terminal**:
    Open a new terminal and run:
    ```bash
-   npx hardhat test --network localhost
+   npx hardhat test  
    ```
 
 ## Test Coverage
@@ -174,4 +197,6 @@ You can use the provided Express.js server to interact with IPFS. This server al
    - Use this hash when interacting with the smart contract to place orders.
 
 **Ensure the server is running and correctly configured to interact with IPFS for smooth data handling.**
- 
+  
+**Under Result--image folder you can view the snapshot of the result and UML Diagram**
+

@@ -14,7 +14,7 @@ describe("OrderStorage", function () {
         orderStorage = await OrderStorageFactory.deploy();
         await orderStorage.deployed();
 
-        console.log(`OrderStorage deployed to: ${orderStorage.address}`);
+        //console.log(`OrderStorage deployed to: ${orderStorage.address}`);
     });
 
     it("Should deploy the contract successfully", async function () {
