@@ -198,5 +198,5 @@ You can use the provided Express.js server to interact with IPFS. This server al
 
 **Ensure the server is running and correctly configured to interact with IPFS for smooth data handling.**
   
-**Under Result--image folder you can view the snapshot of the result and UML Diagram**
+**Under UML Diagram folder you can view the UML Diagram**
 
